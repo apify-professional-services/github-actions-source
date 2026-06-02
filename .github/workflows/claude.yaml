@@ -6,9 +6,6 @@ on:
             ANTHROPIC_API_KEY:
                 required: true
                 description: Claude API key
-            GITHUB_TOKEN:
-                required: true
-                description: GitHub token
 
 jobs:
     claude:
@@ -40,7 +37,7 @@ jobs:
                 use_commit_signing: true
                 claude_args: |
                     --model claude-sonnet-4-6
-                    --allowedTools "Bash(gh pr create*),Bash(gh api*)"
+                    --allowedTools "Bash(gh pr*),Bash(gh api*), Bash(gh issue*)"
 
             - name: Mark issue as processed by Claude
               if: |

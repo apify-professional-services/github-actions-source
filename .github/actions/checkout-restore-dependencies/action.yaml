@@ -19,6 +19,9 @@ runs:
           uses: actions/checkout@v5
           with:
             fetch-depth: 0
+            # We want to test our branch, not GitHub's fake merge commit (we must test that before merging anyway)
+            # head_ref must be used for pull_request but for push and schedule events we have to use ref to get the branch name
+            ref: ${{ github.head_ref || github.ref }}
 
         - name: Use Node.js 24
           uses: actions/setup-node@v4
